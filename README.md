@@ -20,7 +20,7 @@ docker pull sonnyyu/mosquitto
 cd ~/mtls-cert-manage/cert 
 cp * ~/mtls-mosquitto/cert
 ```
-# Make PEM  for haproxy
+# Make PEM  for mosquitto
 ```bash
 cd ~/mtls-mosquitto/cert
 openssl x509 -inform PEM -in localhost.crt > localhost.pem
