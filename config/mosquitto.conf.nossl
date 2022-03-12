@@ -1,0 +1,9 @@
+allow_anonymous true
+pid_file /mqtt/log/mosquitto.pid
+persistence true
+persistence_location /mqtt/data/
+listener 1883
+#log_type debug
+log_dest file /mqtt/log/mosquitto.log
+log_dest stdout
+include_dir /mqtt/config/conf.d
