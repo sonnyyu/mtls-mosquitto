@@ -17,7 +17,7 @@ cp * ~/mtls-mosquitto/certs
 ```
 # Getting started mosquitto with certificate
 ```bash
-cd ~/mtls-eclipse-mosquitto
+cd ~/mtls-mosquitto
 docker-compose build
 ```
 # Getting started mosquitto with certificate
