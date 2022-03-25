@@ -4,14 +4,16 @@ networks:
     name: mosquitto
 services:  
   mosquitto:
-    image: sonnyyu/mosquitto
+#    image: sonnyyu/mosquitto
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: mosquitto
     volumes:
-      - ./cert:/mqtt/cert
-      - ./config:/mqtt/config
-      - ./certs/ca.crt:/mosquitto/data/ca.crt
-      - ./certs/192.168.1.204.pem:/mosquitto/data/localhost.pem
-      - ./certs/192.168.1.204.key:/mosquitto/data/localhost.key
+      - ./config/mosquitto.conf:/mqtt/config/mosquitto.conf
+      - ./certs/ca.crt:/mqtt/cert/ca.crt
+      - ./certs/192.168.1.204.pem:/mqtt/cert/localhost.pem
+      - ./certs/192.168.1.204.key:/mqtt/cert/localhost.key
       - data:/mosquitto/data
       - log:/mosquitto/log
     ports:
