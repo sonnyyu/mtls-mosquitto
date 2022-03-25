@@ -1,29 +1,24 @@
-# Build docker image (optional):
-```bash
-git clone https://github.com/sonnyyu/mtls-mosquitto
-cd mtls-mosquitto
-docker build -t mosquitto .
-docker tag mosquitto sonnyyu/mosquitto
-#docker login
-docker push sonnyyu/mosquitto
-```
-# Grab it from dockerhub:
-```bash
-docker pull sonnyyu/mosquitto
-```
 # Use mtls-cert-manage generate server/client/ca certificate 
 
 [https://github.com/sonnyyu/mtls-cert-manage](https://github.com/sonnyyu/mtls-cert-manage)
 
 # Copy Certificate from mtls-cert-manage
 ```bash
-cd ~/mtls-cert-manage/cert 
-cp * ~/mtls-mosquitto/cert
+cd ~/mtls-cert-manage/pki
+./server.sh
+./client.sh
 ```
-# Make PEM  for mosquitto
+# Copy Certificate from mtls-cert-manage
 ```bash
-cd ~/mtls-mosquitto/cert
-openssl x509 -inform PEM -in localhost.crt > localhost.pem
+cd ~/mtls-cert-manage/pki/servercerts 
+cp * ~/mtls-eclipse-mosquitto/certs
+cd ~/mtls-cert-manage/pki/clientcerts
+cp * ~/mtls-eclipse-mosquitto/certs
+```
+# Getting started mosquitto with certificate
+```bash
+cd ~/mtls-eclipse-mosquitto
+docker-compose build
 ```
 # Getting started mosquitto with certificate
 ```bash
