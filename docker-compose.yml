@@ -1,7 +1,7 @@
 networks:
   mosquitto:
     driver: bridge
-
+    name: mosquitto
 services:  
   mosquitto:
     image: sonnyyu/mosquitto
@@ -9,9 +9,20 @@ services:
     volumes:
       - ./cert:/mqtt/cert
       - ./config:/mqtt/config
+      - ./certs/ca.crt:/mosquitto/data/ca.crt
+      - ./certs/192.168.1.204.pem:/mosquitto/data/localhost.pem
+      - ./certs/192.168.1.204.key:/mosquitto/data/localhost.key
+      - data:/mosquitto/data
+      - log:/mosquitto/log
     ports:
       - 8883:8883
-      - 9001:9001
+#      - 9001:9001
     restart: unless-stopped
     networks:
       - mosquitto
+
+volumes:
+  data:
+    name: data
+  log:
+    name: log
